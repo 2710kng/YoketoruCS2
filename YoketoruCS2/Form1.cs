@@ -3,11 +3,15 @@ using System.Runtime.InteropServices;
 
 namespace YoketoruCS2
 {
-    public partial class Form1 : Form
+    public partial class labelCopyright : Form
     {
         [DllImport("user32.dll")]
 
         public static extern short GetAsyncKeyState(int vKey);
+
+        static int ScoreMax => 99999;
+        static int SpeedMax => 10;
+        static int PointRate => 100;
 
         static int PlayerMax => 1;
         static int ItemMax => 3;
@@ -23,8 +27,6 @@ namespace YoketoruCS2
         int[] vy = new int[LabelMax];
 
         static Random random = new Random();
-
-        static int SpeedMax = 10;
 
         //—ñ‹“Žqenum
         enum State
@@ -44,13 +46,14 @@ namespace YoketoruCS2
         int highScore => 100;
         int StartTimer => 200;
 
-        public Form1()
+        public labelCopyright()
         {
             InitializeComponent();
 
             for (int i = 0; i < LabelMax; i++)
             {
                 chrLabels[i] = new Label();
+                chrLabels[i].Visible = false;
                 chrLabels[i].AutoSize = true;
                 chrLabels[i].Text = "(EƒÖE)";
                 Controls.Add(chrLabels[i]);
@@ -105,33 +108,38 @@ namespace YoketoruCS2
                     tempPlayer.Visible = false;
                     tempObstacle.Visible = false;
                     tempItem.Visible = false;
-                    labelCopyright.Visible = true;
+                   
                     break;
 
                 case State.Game:
                     labelTitle.Visible = false;
                     buttonStart.Visible = false;
                     labelHighScore.Visible = false;
-                    labelCopyright.Visible = false;
-                    break;
-
-                case State.Gameover:
-                    labelGameover.Visible = true;
-                    buttonTitle.Visible = true;
-                    labelHighScore.Visible = true;
+                   
                     score = 0;
+                    UpdateScore();
+                    itemCount = ItemMax;
                     timer = StartTimer;
                     for (int i = ObstacleIndex; i < vx.Length; i++)
                     {
                         vx[i] = random.Next(-SpeedMax, SpeedMax + 1);
                         vy[i] = random.Next(-SpeedMax, SpeedMax + 1);
+                        chrLabels[i].Visible = true;
                     }
+                    RandomObstacleAndItemPosition();
                     break;
+
+                case State.Gameover;
+                    labelGameover.Visible = true;
+                    buttonTitle.Visible = true;
+                    labelHighScore.Visible = true;
+                    UpdateHighScore();
 
                 case State.Clear:
                     labelClear.Visible = true;
                     buttonTitle.Visible = true;
                     labelHighScore.Visible = true;
+                    UpdateHighScore();
                     break;
             }
         }
@@ -275,6 +283,10 @@ namespace YoketoruCS2
             labelScore.Text = $"{score:00000}";
         }
 
-
+        void UpdateHighScore()
+        {
+            highScore = Math.Max(highScore, Score);
+            labelHighScore.Text = $"High Score: {highScore:00000}";
+        }
     }
 }

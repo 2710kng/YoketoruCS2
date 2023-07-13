@@ -1,6 +1,6 @@
 ﻿namespace YoketoruCS2
 {
-    partial class Form1
+    partial class labelCopyright
     {
         /// <summary>
         ///  Required designer variable.
@@ -40,7 +40,9 @@
             tempItem = new Label();
             tempObstacle = new Label();
             labelScore = new Label();
+            labelTimer = new Label();
             label1 = new Label();
+            label2 = new Label();
             SuspendLayout();
             // 
             // timer1
@@ -110,7 +112,7 @@
             // tempPlayer
             // 
             tempPlayer.AutoSize = true;
-            tempPlayer.Location = new Point(38, 169);
+            tempPlayer.Location = new Point(12, 123);
             tempPlayer.Name = "tempPlayer";
             tempPlayer.Size = new Size(38, 15);
             tempPlayer.TabIndex = 6;
@@ -119,7 +121,7 @@
             // tempItem
             // 
             tempItem.AutoSize = true;
-            tempItem.Location = new Point(35, 228);
+            tempItem.Location = new Point(12, 225);
             tempItem.Name = "tempItem";
             tempItem.Size = new Size(38, 15);
             tempItem.TabIndex = 7;
@@ -128,7 +130,7 @@
             // tempObstacle
             // 
             tempObstacle.AutoSize = true;
-            tempObstacle.Location = new Point(38, 112);
+            tempObstacle.Location = new Point(12, 71);
             tempObstacle.Name = "tempObstacle";
             tempObstacle.Size = new Size(38, 15);
             tempObstacle.TabIndex = 8;
@@ -143,21 +145,41 @@
             labelScore.TabIndex = 9;
             labelScore.Text = "00000";
             // 
+            // labelTimer
+            // 
+            labelTimer.AutoSize = true;
+            labelTimer.Location = new Point(715, 400);
+            labelTimer.Name = "labelTimer";
+            labelTimer.Size = new Size(31, 15);
+            labelTimer.TabIndex = 10;
+            labelTimer.Text = "0000";
+            // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(715, 400);
+            label1.Location = new Point(12, 30);
             label1.Name = "label1";
             label1.Size = new Size(38, 15);
-            label1.TabIndex = 10;
+            label1.TabIndex = 11;
             label1.Text = "label1";
             // 
-            // Form1
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(12, 169);
+            label2.Name = "label2";
+            label2.Size = new Size(38, 15);
+            label2.TabIndex = 8;
+            label2.Text = "label1";
+            // 
+            // labelCopyright
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(label2);
             Controls.Add(label1);
+            Controls.Add(labelTimer);
             Controls.Add(labelScore);
             Controls.Add(tempObstacle);
             Controls.Add(tempItem);
@@ -168,7 +190,7 @@
             Controls.Add(labelTitle);
             Controls.Add(buttonTitle);
             Controls.Add(buttonStart);
-            Name = "Form1";
+            Name = "labelCopyright";
             Text = "Form1";
             Load += Form1_Load;
             ResumeLayout(false);
@@ -188,6 +210,8 @@
         private Label tempItem;
         private Label tempObstacle;
         private Label labelScore;
+        private Label labelTimer;
         private Label label1;
+        private Label label2;
     }
 }
